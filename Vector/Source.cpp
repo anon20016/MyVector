@@ -70,9 +70,11 @@ MyVector<int> sortedSquares(const MyVector<int>& vec, SortedStrategy strategy)
 int main() {
 	int n;
 	cin >> n;
-	MyVector<int> a(n);
+	MyVector<int> a;
 	for (int i = 0; i < n; i++) {
-		cin >> a[i];
+		int c;
+		cin >> c;
+		a.pushBack(c);
 	}
 
 	for (int i = 0; i < n; i++) {
