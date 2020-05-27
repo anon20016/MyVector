@@ -84,7 +84,7 @@ int main() {
 			}
 		}
 	}
-
+	a.erase(1, 4);
 	MyVector<int> b = sortedSquares(a, SortedStrategy::Increase);
 
 	for (int i = 0; i < n; i++) {

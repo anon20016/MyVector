@@ -67,6 +67,8 @@ private:
 	// Изменения capacity, путём запроса на добавление num дополнительных элементов. При num = 0 идет п
 	void CalcCapacity(const int num = 0);
 
+	void decreasecapacity();
+
 	T* _data;
 	size_t _size;
 	size_t _capacity;
@@ -185,7 +187,7 @@ inline void MyVector<T>::erase(const size_t i, const size_t len)
 		_data[j] = _data[j + len];
 	}
 	_size -= len;
-	CalcCapacity();
+	decreasecapacity();
 }
 
 
@@ -211,10 +213,25 @@ inline void MyVector<T>::CalcCapacity(const int num)
 			break;
 		}
 	}
-	if (loadFactor() <= 0.25) {
-		reserve(capacity() / 2);
+	
+}
+
+template<typename T>
+inline void MyVector<T>::decreasecapacity()
+{
+	while (loadFactor() <= 1 / (_coef * _coef)) {
+		int new_capacity = _capacity / _coef;
+		T* ndata = new T[new_capacity];
+		for (int i = 0; i < _size; i++) {
+			ndata[i] = _data[i];
+		}
+		delete[] _data;
+		_capacity = new_capacity;
+		_data = ndata;
 	}
 }
+
+
 
 
 
@@ -224,7 +241,7 @@ inline void MyVector<T>::popBack()
 	if (_size == 0)
 		throw std::runtime_error("Vector subscript out of range");
 	_size--;
-	CalcCapacity();
+	decreasecapacity();
 }
 
 
