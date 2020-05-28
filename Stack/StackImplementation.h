@@ -22,5 +22,5 @@ public:
 	// размер 
 	virtual size_t Size() const = 0;
 	// виртуальный деструктор
-	//virtual ~StackImplementation() {};
+	virtual ~StackImplementation() {};
 };

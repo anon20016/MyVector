@@ -30,7 +30,7 @@ public:
 
 	T& top()
 	{
-		return *(new int(this->Front()));
+		return *(new T(getNode(size() - 1)->value));
 	}
 	const T& top() const
 	{

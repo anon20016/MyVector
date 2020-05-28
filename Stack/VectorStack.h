@@ -28,7 +28,7 @@ public:
 
 	T& top()
 	{
-		return *(new int(this->Front()));
+		return *(new T(this->Front()));
 	}
 	const T& top() const
 	{

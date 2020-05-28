@@ -33,8 +33,6 @@ public:
 	Stack(const T* valueArray, const size_t arraySize, 
 		  StackContainer container = StackContainer::Vector);
 
-	explicit Stack(const Stack& copyStack);
-	//Stack& operator=(const Stack& copyStack);
 
 	// Здесь как обычно
 	// Stack(Stack&& moveStack) noexcept;
@@ -80,13 +78,26 @@ inline Stack<T>::Stack(StackContainer container)
 template<typename T>
 Stack<T>::Stack(const T* valueArray, const size_t arraySize, StackContainer container)
 {
-	//_pimpl = new ListStack<T>;
+	switch (container)
+	{
+	case StackContainer::Vector:
+		_pimpl = new VectorStack<T>;
+		for (int i = 0; i < arraySize; i++) {
+			_pimpl->push(valueArray[i]);
+		}
+		break;
+	case StackContainer::List:
+		_pimpl = new ListStack<T>;
+		for (int i = 0; i < arraySize; i++) {
+			_pimpl->push(valueArray[i]);
+		}
+		break;
+	default:
+		break;
+	}
 }
 
-template<typename T>
-inline Stack<T>::Stack(const Stack& copyStack)
-{
-}
+
 
 
 template<typename T>

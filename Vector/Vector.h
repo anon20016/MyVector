@@ -80,8 +80,7 @@ private:
 	float _coef;
 	int _delta;
 };
-<<<<<<< HEAD
-=======
+
 
 template<typename T>
 inline MyVector<T>::MyVector(size_t size, ResizeStrategy r, float coef, int delta)
@@ -269,6 +268,15 @@ inline void MyVector<T>::clear()
 	_size = 0;
 }
 
+template<typename T>
+inline const T& MyVector<T>::Front() const
+{
+	if (size() > 0) {
+		return _data[_size - 1];
+	}
+	throw new exception("index error");
+}
+
 
 
 
@@ -339,5 +347,3 @@ inline MyVector<T>& MyVector<T>::operator=(const MyVector<T>& copy)
 		_data[i] = copy._data[i];
 	}
 }
-
->>>>>>> 50ae64243b24d70bec656c156aa67c88a085a8d1

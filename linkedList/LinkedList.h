@@ -71,3 +71,4 @@ private:
 
 	void forceNodeDelete(Node* node);
 };
+
