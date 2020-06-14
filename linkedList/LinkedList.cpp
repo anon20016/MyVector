@@ -159,13 +159,16 @@ void LinkedList::pushFront(const ValueType& value)
 
 void LinkedList::remove(const size_t pos)
 {
-
 	if (pos < this->_size) {
-		if (pos == 0)
+		if (pos == 0) {
+			auto temp = this->_head;
 			this->_head = this->_head->next;
+			delete temp;
+		}
 		else {
 			this->getNode(pos - 1)->removeNext();
 		}
+		_size--;
 	}
 }
 
@@ -176,7 +179,9 @@ void LinkedList::removeNextNode(Node* node)
 
 void LinkedList::removeFront()
 {
+	auto temp = this->_head;
 	*this->_head = *this->_head->next;
+	delete temp;
 	_size--;
 }
 

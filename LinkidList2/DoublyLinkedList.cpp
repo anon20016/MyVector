@@ -16,8 +16,8 @@ DoublyLinkedList::Node::~Node()
 void DoublyLinkedList::Node::insertNext(const ValueType& value)
 {
 	Node* newNode = new Node(value, this->next, this);
+	this->next->prev = newNode;
 	this->next = newNode;
-	newNode->prev = this;
 }
 
 void DoublyLinkedList::Node::removeNext()
